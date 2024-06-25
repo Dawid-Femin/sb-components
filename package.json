@@ -1,0 +1,97 @@
+{
+  "name": "storybookvite",
+  "version": "1.0.0",
+  "types": "dist/index.d.ts",
+  "main": "dist/es/index.js",
+  "module": "dist/es/index.js",
+  "browser": "dist/es/index.js",
+  "type": "module",
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "yarn build:icons && yarn build:rollup && yarn build:images ",
+    "build:rollup": "rollup -c",
+    "build:images": "cp -R src/assets/images dist/images",
+    "build:icons": "svgr --typescript --out-dir src/icons src/assets/icons",
+    "build:types": "tsc -p ./tsconfig.json",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@chromatic-com/storybook": "^1.5.0",
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@storybook/addon-essentials": "^8.1.10",
+    "@storybook/addon-interactions": "^8.1.10",
+    "@storybook/addon-links": "^8.1.10",
+    "@storybook/addon-onboarding": "^8.1.10",
+    "@storybook/blocks": "^8.1.10",
+    "@storybook/react": "^8.1.10",
+    "@storybook/react-vite": "^8.1.10",
+    "@storybook/test": "^8.1.10",
+    "prop-types": "^15.8.1",
+    "rollup-plugin-styles": "^4.0.0",
+    "storybook": "^8.1.10",
+    "storybook-css-modules": "^1.0.8",
+    "typescript": "^5.4.5",
+    "vite": "^5.3.1"
+  },
+  "dependencies": {
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "classnames": "^2.5.1",
+    "css-loader": "^7.1.2",
+    "postcss-loader": "^8.1.1",
+    "prettier": "^3.3.2",
+    "resolve-url-loader": "^5.0.0",
+    "rollup": "^4.18.0",
+    "rollup-plugin-dts": "^6.1.1",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.77.6",
+    "sass-loader": "^14.2.1",
+    "style-loader": "^4.0.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|scss|sass|less)$": "<rootDir>/__mocks__/styleMock.js",
+      "icons": "<rootDir>/__mocks__/svgMock.js"
+    },
+    "transform": {
+      "^.+\\.tsx?$": [
+        "ts-jest"
+      ],
+      "^.+\\.jsx?$": [
+        "rollup-jest",
+        {
+          "output": {
+            "exports": "auto"
+          },
+          "plugins": [
+            [
+              "rollup-plugin-node-resolve"
+            ],
+            [
+              "rollup-plugin-styles",
+              {
+                "import": true,
+                "extract": true,
+                "modules": true,
+                "autoModules": true,
+                "include": "src/**/*.scss"
+              }
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}
