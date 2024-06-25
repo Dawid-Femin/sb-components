@@ -1,0 +1,33 @@
+.root {
+  outline: none;
+  border: 4px solid $white;
+  background: #008aff;
+  color: #000000;
+  box-shadow: rgba(0, 0, 0, 0.18) 0 2px 4px;
+  cursor: pointer;
+  transition: .2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+
+.small {
+  padding: 12px 30px;
+  font-size: 20px;
+}
+
+.medium {
+  padding: 16px 40px;
+  font-size: 28px;
+}
+
+.big {
+  padding: 26px 60px;
+  font-size: 36px;
+}
+
+.rounded {
+  border-radius: 15px;
+}
